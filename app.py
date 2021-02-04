@@ -1,4 +1,6 @@
 import datetime
+import logging
+import logging.handlers
 from flask import Flask
 from flask import render_template
 from flask import session as ses
@@ -29,9 +31,19 @@ session = scoped_session(
     )
 )
 
+# ログ設定
+LOGFILE = "test.log"
+app.logger.setLevel(logging.DEBUG)
+fh = logging.FileHandler(LOGFILE)
+fh.setLevel(logging.DEBUG)
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+fh.setFormatter(formatter)
+app.logger.addHandler(fh)
 
 @app.route('/')
 def hello_world():
+    app.logger.info("処理開始")
+
     val1 = "■ webサーバ現在日時：%s" \
            % datetime.datetime.now()
     val2 = "■ db サーバ現在日時：%s" \
@@ -46,6 +58,8 @@ def hello_world():
         val3 = "■ セッション既存利用：%s" % ses.get("sid")
         print(ses.items())
     values = {"val1": val1, "val2": val2, "val3": val3}
+
+    app.logger.info("処理終了")
     return render_template('index.html', values=values)
 
 
