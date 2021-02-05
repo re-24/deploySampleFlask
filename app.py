@@ -40,6 +40,7 @@ formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(messag
 fh.setFormatter(formatter)
 app.logger.addHandler(fh)
 
+
 @app.route('/')
 def hello_world():
     app.logger.info("処理開始")
@@ -49,7 +50,7 @@ def hello_world():
     val2 = "■ db サーバ現在日時：%s" \
            % session.execute("select now()").next()[0]
 
-    if ses.get("init") :
+    if not ses.get("init"):
         ses["init"] = True
         ses["sid"] = datetime.datetime.now().strftime("%y%m%d%H%M%S")
         val3 = "■ セッション新規作成：%s" % ses.get("sid")
@@ -64,4 +65,4 @@ def hello_world():
 
 
 if __name__ == '__main__':
-    app.run()
+    app.run(host='0.0.0.0')
