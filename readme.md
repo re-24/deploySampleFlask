@@ -16,6 +16,7 @@
 # gitから取得 & venv作成
 cd /home/ec2-user/
 git clone https://github.com/re-24/deploySampleFlask
+cd deploySampleFlask
 python3 -m venv ./venv
 
 # 環境切り替え
