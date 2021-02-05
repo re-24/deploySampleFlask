@@ -31,7 +31,6 @@ pip install uwsgi
 ```
 sudo yum install nginx
 ```
-※ http://<IPアドレス>/ で nginxのwelcomeページが表示されるの確認
 
 * nginx 設定を修正(/etc/nginx/nginx.conf)
 ```
@@ -56,6 +55,13 @@ server {
 }
 ```
 
+* nginx 起動と実行登録
+```
+sudo systemctl enable nginx
+sudo systemctl start nginx
+```
+※ 何かしら設定ファイルかえたら再起動が必要
+
 * uwsgi 設定ファイル作成(/home/ec2-user/deploySampleFlask/app.ini)
 ```
 [uwsgi]
@@ -69,6 +75,11 @@ vacuum = true
 die-on-term = true
 wsgi-file = /home/ec2-user/deploySampleFlask/app.py
 logto = /home/ec2-user/deploySampleFlask/app.log
+```
+
+* flask起動
+```
+uwsgi --ini app.ini 
 ```
 
 ## 他の参考サイトの通りやって嵌った事柄
