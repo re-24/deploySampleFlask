@@ -84,5 +84,5 @@ uwsgi --ini app.ini
 
 ## 他の参考サイトの通りやって嵌った事柄
 * tmp直下は、private tmp(?)になるらしく、uwsgiから見れない
-  (tmpに作られるファイルがマスタリングされる)
+  (tmpに作られるファイルがマングリングされる)
 * nginxとuwsgiの実行ユーザが一致していないとpermission denied
