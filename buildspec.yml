@@ -12,3 +12,6 @@ phases:
       - echo parameter_store_env:${parameter_store_env}   # envのparameter-store定義し、パラメータストアから暗号化された値を取得
       - echo project_env:${project_env}                   # CodeBuildプロジェクトで定義した値を取得(プレーンテキスト)
       - echo parameter_store_env2:${parameter_store_env2} # CodeBuildプロジェクトで定義し、パラメータストアから暗号化された値を取得
+    artifacts:
+      files:
+        - '**/*'
