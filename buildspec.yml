@@ -1,0 +1,14 @@
+version: 0.2
+
+env:
+  variables:
+    buildspec_yml_env: "This param is from buildspec.yml"
+  parameter-store:
+    parameter_store_env: "parameter_store_env"
+phases:
+  build:
+    commands:
+      - echo buildspec_yml_env:${buildspec_yml_env}       # envのvariablesで定義した値を取得
+      - echo parameter_store_env:${parameter_store_env}   # envのparameter-store定義し、パラメータストアから暗号化された値を取得
+      - echo project_env:${project_env}                   # CodeBuildプロジェクトで定義した値を取得(プレーンテキスト)
+      - echo parameter_store_env2:${parameter_store_env2} # CodeBuildプロジェクトで定義し、パラメータストアから暗号化された値を取得
