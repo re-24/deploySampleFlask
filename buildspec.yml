@@ -15,4 +15,4 @@ phases:
     artifacts:
       files:
         - '**/*'
-      base-directory: 'deploySampleFlask'
+      name: myname-$(date +%Y-%m-%d)
